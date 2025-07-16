@@ -8,7 +8,7 @@ edit_uri: edit/main/docs/ # Optional: Enable "Edit this page" links
 # Theme configuration
 theme:
   name: material
-  logo: assets/images/eversana_logo.jpg # Optional: Add a custom logo (replace with your path)
+  logo: assets/images/eversana_logo.jpeg # Optional: Add a custom logo (replace with your path)
   favicon: assets/images/favicon.ico # Optional: Add a favicon
 
   palette:
