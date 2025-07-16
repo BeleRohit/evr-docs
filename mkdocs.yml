@@ -1,59 +1,116 @@
-# mkdocs.yml
 site_name: EVERSANA ETL Process Runbook
-site_url: https://your-github-username.github.io/your-repo-name/ # IMPORTANT: Update this URL!
+site_url: https://BeleRohit.github.io/evr-docs/ # IMPORTANT: Update this URL!
 site_description: A user-friendly guide to EVERSANA's ETL pipeline.
+repo_url: https://github.com/BeleRohit/evr-docs
+repo_name: evr-docs
+edit_uri: edit/main/docs/ # Optional: Enable "Edit this page" links
 
 # Theme configuration
 theme:
-  name: material # A modern, responsive, and feature-rich theme
-  palette:
-    primary: 'indigo' # Primary color for the theme
-    accent: 'blue'    # Accent color for links, etc.
-  features:
-    - navigation.tabs # Top-level navigation tabs
-    - navigation.sections # Sections in the sidebar
-    - toc.integrate # Integrate table of contents into the sidebar
-    - search.suggest # Search suggestions
-    - search.highlight # Highlight search results
-    - content.tabs.link # Linkable tabs within content
-    - content.tooltips # Enable tooltips for definitions (requires specific Markdown syntax)
-  icon:
-    logo: material/file-document-outline # You can change this icon
+  name: material
+  logo: assets/images/eversana_logo.jpg # Optional: Add a custom logo (replace with your path)
+  favicon: assets/images/favicon.ico # Optional: Add a favicon
 
-# Extensions for enhanced Markdown features
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand # Expand active sections by default
+    - navigation.top # Back-to-top button
+    - toc.integrate
+    - content.code.copy # Add copy buttons to code blocks
+    - content.tabs.link
+    - content.tooltips
+    - content.action.edit # Show "Edit this page" link (if repo configured)
+    - content.action.view # Show "View source" link
+    - search.suggest
+    - search.highlight
+    - navigation.path # Show breadcrumb navigation
+
+  icon:
+    logo: material/factory
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
+
+# Markdown Extensions
 markdown_extensions:
-  - admonition # For callouts like 'note', 'tip', 'warning'
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
   - pymdownx.highlight:
       anchor_linenums: true
       linenums: true
-  - pymdownx.superfences # For better code blocks
-  - pymdownx.details # For collapsible sections
   - pymdownx.tabbed:
       alternate_style: true
-  - attr_list # Essential for tooltips and custom attributes
-  - def_list # For definition lists (can be used for glossary)
-  - footnotes # For footnotes, useful for definitions
-  - pymdownx.snippets # For including content from other files (e.g., glossary)
+  - pymdownx.snippets
+  - pymdownx.keys
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
 
 # Navigation structure
 nav:
   - Home: index.md
-  - Glossary: glossary.md
-  - 3. Our Data Pipeline:
-    - Overview: pipeline/overview.md
-    - Data Sources: pipeline/data_sources.md
-    - Ingestion & File Tracking: pipeline/ingestion_file_tracking.md
-    - Orchestration: pipeline/orchestration.md
-    - Data Processing: pipeline/data_processing.md
-    - Data Consumers: pipeline/data_consumers.md
-  - 4. CI/CD Process: ci_cd.md
-  - 5. Security & Monitoring: security_monitoring.md
-  - 6. Metadata Tables: metadata_tables.md
-  - 7. How to Deploy Your Code: deployment_guide.md
-  - 8. Need Help? Resources & Support: resources_support.md
+  - Quick Reference:
+      - Glossary: glossary.md
+      - Metadata Tables: metadata_tables.md
+  - Data Pipeline:
+      - Overview: pipeline/overview.md
+      - 3.1 Data Sources: pipeline/data_sources.md
+      - 3.2 Ingestion & File Tracking: pipeline/ingestion_file_tracking.md
+      - 3.3 Orchestration: pipeline/orchestration.md
+      - 3.4 Data Processing: pipeline/data_processing.md
+      - 3.5 Data Consumers: pipeline/data_consumers.md
+  - Developer Guide:
+      - 4. CI/CD Process: ci_cd.md
+      - 7. How to Deploy Your Code: deployment_guide.md
+  - Security & Monitoring:
+      - 5. Security & Monitoring: security_monitoring.md
+  - Support & Resources:
+      - 8. Need Help? Resources & Support: resources_support.md
 
-# Plugins (optional, but can add powerful features)
+# Plugins
 plugins:
-  - search # Enable search functionality
-  # - minify: # Optional: Minify HTML, CSS, JS for faster loading
+  - search
+  - git-revision-date-localized: # Shows "Last updated" on pages
+      fallback_to_build_date: true
+  - tags: # Optional, for future tagging of pages
+  # - minify:
   #     minify_html: true
+
+# Extra Configurations
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/BeleRohit/evr-docs
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/eversana
+  version:
+    provider: mike # Optional if using versioning with mike
+
+# Custom Directory for Docs (Optional)
+docs_dir: docs
+
+# Include static assets
+extra_css:
+  - assets/css/custom.css # Create for branding (optional)
+
+extra_javascript:
+  - assets/js/custom.js # For custom tooltips or behavior (optional)

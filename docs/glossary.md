@@ -1,70 +1,206 @@
-Full Glossary of Terms
-This page provides a comprehensive list of terms used throughout the runbook and within our data team.
+# Full Glossary of Terms
 
-ETL (Extract, Transform, Load): Our main process! It means we Extract data from its source, Transform it (clean, reshape, combine), and then Load it into its final destination.
+This page provides a **comprehensive list of terms** used throughout the EVERSANA runbook and within our data team.
 
-Learn more about ETL
+---
 
-ELT (Extract, Load, Transform): A variation where data is loaded into the target system first, then transformed within that system. We use both ETL and ELT concepts.
+### ETL (Extract, Transform, Load)
 
-Learn more about ELT
+Our **main data processing pipeline**:
 
-DAG (Directed Acyclic Graph): In our Airflow system, this is like a flowchart that defines a series of tasks and the order they need to run in for a specific data process.
+- **Extract** data from its source.
+- **Transform** it (clean, reshape, combine).
+- **Load** it into its final destination (usually Snowflake).
 
-Learn more about Airflow DAGs
+[Learn more about ETL](https://en.wikipedia.org/wiki/Extract,_transform,_load)
 
-AWS (Amazon Web Services): The "cloud" where we host most of our data systems and services.
+---
 
-Learn more about AWS
+### ELT (Extract, Load, Transform)
 
-AWS S3 (Simple Storage Service): Amazon's cloud storage. Imagine it as super-scalable, secure folders in the sky where we store our data files.
+A variation of ETL where:
 
-Learn more about AWS S3
+- Data is **Extracted** from the source.
+- **Loaded** into the target system (like Snowflake).
+- Then **Transformed** inside that system using SQL or other tools.
 
-Apache Airflow: An open-source tool that acts as our "orchestrator" or "scheduler." It makes sure all our data processes run on time and in the correct order.
+We use both **ETL** and **ELT** depending on the use case.
 
-Visit the Apache Airflow documentation
+[Learn more about ELT](https://en.wikipedia.org/wiki/Extract,_load,_transform)
 
-AWS ECS (Elastic Container Service): An AWS service that helps us run our data processing applications in isolated "containers."
+---
 
-Learn more about AWS ECS
+### DAG (Directed Acyclic Graph)
 
-AWS Fargate: A "serverless" technology that works with ECS. It means we don't have to worry about managing the actual servers that run our applications; AWS handles it for us.
+In **Apache Airflow**, a DAG represents:
 
-Learn more about AWS Fargate
+- A **flowchart of tasks** that define a specific data process.
+- Tasks run in sequence or parallel based on dependencies.
+- **Acyclic** means tasks move forward without loops.
 
-Docker: A technology that packages our applications (and all their necessary parts) into self-contained units called "containers." This ensures our code runs exactly the same everywhere.
+[Learn more about Airflow DAGs](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html)
 
-Visit the Docker documentation
+---
 
-Snowflake: Our powerful cloud-based data warehouse. This is where most of our processed data lives and where our analytical tools connect.
+### AWS (Amazon Web Services)
 
-Visit the Snowflake documentation
+The **cloud platform** where EVERSANA hosts:
 
-CI/CD (Continuous Integration / Continuous Deployment): Our automated way of building, testing, and releasing new code changes quickly and reliably.
+- Data storage  
+- Compute workloads  
+- Cloud services for scalability and reliability
 
-Learn more about CI/CD
+[Learn more about AWS](https://aws.amazon.com/what-is-aws/)
 
-DQM (Data Quality Monitoring): Our system for checking and ensuring that our data is accurate, complete, and consistent.
+---
 
-Learn more about Data Quality
+### AWS S3 (Simple Storage Service)
 
-Metadata: "Data about data." In our world, this means information stored in special tables that describes our files, columns, and the rules for processing them.
+Amazon’s **object storage service**, used for:
 
-Learn more about Metadata
+- Storing raw data files  
+- Keeping backups  
+- Managing large-scale data securely in the cloud
 
-Azure DevOps: A suite of development tools from Microsoft that we use for version control, CI/CD pipelines, and project management.
+[Learn more about AWS S3](https://aws.amazon.com/s3/)
 
-Visit the Azure DevOps documentation
+---
 
-Azure Repos: The Git-based code hosting service within Azure DevOps.
+### Apache Airflow
 
-Learn more about Azure Repos
+An **open-source workflow orchestrator**:
 
-Tableau: A popular business intelligence tool used for data visualization and reporting.
+- Manages scheduling, monitoring, and execution of data pipelines.
+- Ensures tasks run in the correct sequence with error handling.
 
-Visit the Tableau documentation
+[Visit the Apache Airflow documentation](https://airflow.apache.org/docs/)
 
-Sonar Cloud Analysis: A cloud-based service for continuous code quality and security analysis.
+---
 
-Visit SonarCloud documentation
+### AWS ECS (Elastic Container Service)
+
+AWS ECS is used to **run containerized applications**:
+
+- Supports Docker containers in the cloud.
+- Manages deployment and scaling automatically.
+
+[Learn more about AWS ECS](https://aws.amazon.com/ecs/)
+
+---
+
+### AWS Fargate
+
+A **serverless compute engine for containers**:
+
+- Works with ECS to run containers without managing infrastructure.
+- Automatically provisions and scales resources.
+
+[Learn more about AWS Fargate](https://aws.amazon.com/fargate/)
+
+---
+
+### Docker
+
+A **containerization platform**:
+
+- Packages applications and dependencies into **self-contained units** called containers.
+- Ensures software runs the same way in any environment.
+
+[Visit the Docker documentation](https://docs.docker.com/)
+
+---
+
+### Snowflake
+
+Our **cloud-based data warehouse**:
+
+- Stores processed data.
+- Supports advanced analytics and reporting via SQL.
+- Highly scalable and supports multiple workloads.
+
+[Visit the Snowflake documentation](https://docs.snowflake.com/)
+
+---
+
+### CI/CD (Continuous Integration / Continuous Deployment)
+
+A system for **automated building, testing, and deploying** of code:
+
+- **CI**: Automatically tests and integrates code changes.  
+- **CD**: Automatically deploys code to development and production environments.
+
+[Learn more about CI/CD](https://www.atlassian.com/continuous-delivery/ci-vs-ci-vs-cd)
+
+---
+
+### DQM (Data Quality Monitoring)
+
+A process for **checking the quality of our data**:
+
+- Validates data accuracy, completeness, and consistency.
+- Prevents bad data from entering downstream systems.
+
+[Learn more about Data Quality](https://en.wikipedia.org/wiki/Data_quality)
+
+---
+
+### Metadata
+
+**"Data about data."**
+
+In EVERSANA's systems, metadata includes:
+
+- Column descriptions  
+- File formats  
+- Processing rules  
+- Data lineage and audit information
+
+[Learn more about Metadata](https://en.wikipedia.org/wiki/Metadata)
+
+---
+
+### Azure DevOps
+
+A suite of tools from Microsoft for:
+
+- Version control (Git)  
+- CI/CD pipeline management  
+- Project tracking and collaboration
+
+[Visit the Azure DevOps documentation](https://learn.microsoft.com/en-us/azure/devops/)
+
+---
+
+### Azure Repos
+
+The **Git-based code repository** service within Azure DevOps:
+
+- Stores and manages our source code.  
+- Supports pull requests, branching, and code reviews.
+
+[Learn more about Azure Repos](https://learn.microsoft.com/en-us/azure/devops/repos/)
+
+---
+
+### Tableau
+
+A **business intelligence (BI) tool** used for:
+
+- Data visualization  
+- Interactive dashboards  
+- Reporting and analytics for business users
+
+[Visit the Tableau documentation](https://help.tableau.com/current/guides/e-learning/en-us/)
+
+---
+
+### SonarCloud Analysis
+
+A **cloud-based code quality and security analysis tool**:
+
+- Performs static code analysis during CI/CD pipelines.  
+- Identifies bugs, security vulnerabilities, and code smells.
+
+[Visit the SonarCloud documentation](https://sonarcloud.io/documentation)
+
+---

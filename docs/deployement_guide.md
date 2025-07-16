@@ -1,53 +1,277 @@
-7. How to Deploy Your Code: A Quick Guide (for Developers) 🚀
-If you're a developer, you'll be deploying your code changes. Here's a simplified version of the steps. Your team will provide more detailed, hands-on training.
 
-Get the Code: First, you'll "clone" our code repository (Azure Repos) to your computer using git clone.
+# EVERSANA Code Deployment Guide: How to Deploy Your Code 🚀
 
-Common Git Command: git clone <repository-url>
+**Version:** 1.0  
+**Date:** July 17, 2025  
 
-Work on 'dev': You'll usually start by making sure your local 'dev' branch is up-to-date: git checkout dev then git pull origin dev.
+---
 
-Common Git Commands:
+## Purpose
 
-git checkout <branch-name>: Switch to a branch.
+Welcome to the **EVERSANA developer workflow!**
 
-git pull origin <branch-name>: Get latest changes from remote.
+As a developer, you’ll regularly need to **deploy your code changes** into our systems.  
+This document provides a **complete, step-by-step guide** to help you understand how code deployment works at EVERSANA, even if you're new to Git or Azure DevOps.
 
-Make Your Changes: Open the relevant code file (e.g., an Apache Airflow DAG { data-tooltip="Directed Acyclic Graph: In our Airflow system, this is like a flowchart that defines a series of tasks and the order they need to run in for a specific data process." } file) and make your updates.
+By the end of this guide, you’ll know how to:
 
-Create a New Branch: Always work in a new "feature branch" for your changes: git checkout -b 'your-descriptive-branch-name'.
+- Work with Git branches  
+- Push your code to Azure Repos  
+- Create Pull Requests (PRs)  
+- Deploy to development and production environments  
+- Verify your deployment
 
-Common Git Command: git checkout -b <new-branch-name>
+---
 
-Save & Commit: Save your changes, then "add" them to be tracked (git add .) and "commit" them with a clear message (git commit -m 'Your brief description').
+## Deployment Workflow Overview
 
-Common Git Commands:
+We use a **branch-based development workflow** combined with **CI/CD pipelines** for safe and efficient code deployment.
 
-git add .: Stage all changes.
+### Branching Model:
 
-git commit -m 'Your message': Commit staged changes.
+| Branch        | Purpose                                     |
+|---------------|---------------------------------------------|
+| `dev`         | Active development and testing environment  |
+| `main`        | Production-ready, stable code               |
+| `feature/*`   | New features or bug fixes (temporary branch)|
 
-git status: Check current status of your working directory.
+---
 
-git diff: See changes before staging/committing.
+## Step 1: Clone the Repository
 
-Push Your Branch: Send your new branch to our central code repository: git push -u origin your-descriptive-branch-name.
+Start by **cloning the code repository** from Azure Repos to your local machine.
 
-Common Git Command: git push -u origin <your-branch-name>
+### Command:
 
-Create a Pull Request (PR) to 'dev': Go to Azure DevOps (your team will provide the specific URL). You'll create a PR from your new branch to the 'dev' branch. This is where automated checks run and your teammates review your code.
+```bash
+git clone <repository-url>
+````
 
-Merge to 'dev': Once your PR is approved and all checks pass, it gets merged into the 'dev' branch. This automatically deploys your changes to our development environment for testing.
+Replace `<repository-url>` with the link shared by your team.
 
-Create a PR to 'main' (for Production): After successful testing in the development environment, you'll create another PR, this time from the 'dev' branch to the 'main' branch. This also requires review and approval.
+This will download the repository to your machine.
 
-Merge to 'main': Once approved, merging to 'main' automatically deploys your changes to our production environment (our live system).
+---
 
-Verify: Always check the Airflow UI after deployment to make sure your changes are live and working as expected!
+## Step 2: Update Your Local `dev` Branch
 
-Potential Improvements for this Section:
-Link to Detailed Guides: For each step, provide a link to a more detailed internal guide or a short video tutorial (if available).
+Make sure your local `dev` branch is **up-to-date** before starting any new work.
 
-Common Git Commands: Add a small box with commonly used Git commands for developers (e.g., git status, git diff, git log).
+### Commands:
 
-Troubleshooting Deployment Issues: Briefly mention common reasons for deployment failures and where to look for logs (e.g., "If your pipeline fails, check the Azure DevOps pipeline logs").
+```bash
+git checkout dev          # Switch to the dev branch
+git pull origin dev       # Update local dev with the latest changes
+```
+
+This ensures you are working on the latest codebase.
+
+---
+
+## Step 3: Create a New Feature Branch
+
+All new work should be done in a **separate feature branch** to keep changes isolated and reviewable.
+
+### Command:
+
+```bash
+git checkout -b your-descriptive-branch-name
+```
+
+### Naming Convention Example:
+
+| Type    | Example                 |
+| ------- | ----------------------- |
+| Feature | `feature/add-new-dag`   |
+| Bugfix  | `bugfix/fix-s3-path`    |
+| Hotfix  | `hotfix/urgent-dag-fix` |
+
+---
+
+## Step 4: Make Your Changes
+
+Edit the relevant files depending on your task.
+
+Examples:
+
+* **Apache Airflow DAGs** – Define or update task workflows.
+* **Python scripts** – Implement transformations or business logic.
+* **SQL scripts** – Modify data queries or models.
+* **Configuration files** – Update environment settings or parameters.
+
+---
+
+## Step 5: Stage and Commit Your Changes
+
+Once your changes are ready:
+
+### Stage the changes:
+
+```bash
+git add .
+```
+
+### Commit the changes with a clear message:
+
+```bash
+git commit -m "Short, clear description of your changes"
+```
+
+---
+
+### Useful Git Commands
+
+| Action                | Command                        |
+| --------------------- | ------------------------------ |
+| Stage all changes     | `git add .`                    |
+| Commit changes        | `git commit -m "Your message"` |
+| Check status          | `git status`                   |
+| View unstaged changes | `git diff`                     |
+| View commit history   | `git log`                      |
+
+---
+
+## Step 6: Push Your Feature Branch
+
+Push your new branch to Azure Repos so that others can review your code.
+
+### Command:
+
+```bash
+git push -u origin your-descriptive-branch-name
+```
+
+The `-u` flag links your local branch to the remote branch for easier future pushes.
+
+---
+
+## Step 7: Create a Pull Request (PR) to `dev`
+
+In **Azure DevOps**, create a **Pull Request (PR)**:
+
+1. Navigate to your repository in Azure DevOps.
+2. Open a PR from **your feature branch into `dev`**.
+3. Provide a **clear title and description** of what your PR does.
+4. Assign reviewers (your team will guide you on reviewers).
+5. Azure Pipelines will run automated checks (tests, linting, etc.).
+
+---
+
+## Step 8: Merge into `dev`
+
+Once your PR is:
+
+* **Approved by reviewers**
+* **All checks pass**
+
+You can merge your changes into the `dev` branch.
+
+### What happens next?
+
+* Your code is **automatically deployed to the development environment** via CI/CD pipelines.
+* This allows your team to test the changes in a safe environment.
+
+---
+
+## Step 9: Create a Pull Request (PR) to `main`
+
+After successful testing in the development environment:
+
+1. Create a **new PR from `dev` to `main`**.
+2. This PR is reviewed again to ensure production readiness.
+3. Automated checks will run as part of the pipeline.
+
+---
+
+## Step 10: Merge into `main` (Production Deployment)
+
+When the `main` PR is:
+
+* **Approved by reviewers**
+* **All checks pass**
+
+Merging the PR will **automatically deploy your changes to production**.
+
+Our **CI/CD pipeline handles the deployment process**—no manual server steps are needed.
+
+---
+
+## Step 11: Verify Your Deployment
+
+After production deployment:
+
+1. **Check the Airflow UI** to confirm:
+
+   * New DAGs appear (if applicable).
+   * DAGs are scheduled and running properly.
+
+2. **Monitor Logs** for any errors or unexpected behavior.
+
+3. **Test Data Pipelines** if your changes affect ETL jobs.
+
+---
+
+## Troubleshooting Tips
+
+### Common Deployment Issues:
+
+| Issue                              | Where to Check                         |
+| ---------------------------------- | -------------------------------------- |
+| Pipeline failure                   | Azure DevOps Pipeline logs             |
+| Merge conflicts                    | Local Git terminal                     |
+| DAG not visible in Airflow         | Airflow UI logs & DAG folder structure |
+| Failing automated tests            | Azure Pipeline test output             |
+| Environment variable/config errors | Pipeline configs & deployment logs     |
+
+---
+
+## Quick Git Command Reference
+
+| Action                | Command                             |
+| --------------------- | ----------------------------------- |
+| Clone repository      | `git clone <repository-url>`        |
+| Switch to a branch    | `git checkout <branch-name>`        |
+| Create new branch     | `git checkout -b <new-branch-name>` |
+| Pull latest changes   | `git pull origin <branch-name>`     |
+| Stage all changes     | `git add .`                         |
+| Commit changes        | `git commit -m "Your message"`      |
+| Check status          | `git status`                        |
+| View unstaged changes | `git diff`                          |
+| View commit history   | `git log`                           |
+| Push new branch       | `git push -u origin <branch-name>`  |
+
+---
+
+## Summary: Deployment Flow
+
+```
+Local Feature Branch  
+        │
+        └──> Pull Request to `dev`  
+                │
+                └──> Automated Tests & Review  
+                        │
+                        └──> Merge to `dev`  
+                                │
+                                └──> Deploy to Development  
+                                        │
+                                        └──> Pull Request to `main`  
+                                                │
+                                                └──> Review & Approval  
+                                                        │
+                                                        └──> Merge to `main`  
+                                                                │
+                                                                └──> Deploy to Production
+```
+
+---
+
+## Final Notes
+
+* **Always verify your deployments** in Airflow and monitor logs post-deployment.
+* Use **clear commit messages** and **descriptive branch names** to make the process collaborative and easy to review.
+* If you encounter issues, ask your team leads or check Azure DevOps logs for details.
+
+---
+
+

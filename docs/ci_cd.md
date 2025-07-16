@@ -1,33 +1,143 @@
-4. How We Build & Deploy Code: Our CI/CD Process 🚀
-Our CI/CD { data-tooltip="Continuous Integration / Continuous Deployment: Our automated way of building, testing, and releasing new code changes quickly and reliably." } process is our automated pipeline for getting new code (for our data processes) from a developer's computer into our live systems. We use Azure DevOps { data-tooltip="A suite of development tools from Microsoft that we use for version control, CI/CD pipelines, and project management." } for this.
+# 4. How We Build & Deploy Code: Our CI/CD Process 🚀
 
-Here's a simplified breakdown:
+Our **CI/CD (Continuous Integration / Continuous Deployment)** process is the **automated pipeline** we use to move new code from a developer’s laptop into our live data systems safely and efficiently.
 
-You Write Code: As a developer, you'll write new code for our data processes (e.g., a new Apache Airflow DAG { data-tooltip="Directed Acyclic Graph: In our Airflow system, this is like a flowchart that defines a series of tasks and the order they need to run in for a specific data process." }, or a change to a data transformation script). You do this in a "feature branch" of our code repository (Azure Repos).
+![CI/CD Pipeline Diagram](../assets/ci_cd_diagram.pn)
 
-Propose Changes (Pull Request - PR): When your code is ready, you create a "Pull Request" (PR). This is a request to merge your changes into the main codebase.
+We use **Azure DevOps** for:
 
-Learn how to create a Pull Request in Azure DevOps
+- Version control (code repositories via Azure Repos)  
+- CI/CD pipelines (automated testing and deployment)  
+- Code review and project management
 
-Automated Checks (CI): Creating a PR automatically triggers our Continuous Integration (CI) pipeline. This pipeline:
+---
 
-Checks Code Quality: It automatically scans your code for errors and best practices using tools like Sonar Cloud Analysis.
+## Overview of the CI/CD Pipeline
 
-Builds Components: It builds any necessary components, like new Docker images { data-tooltip="A technology that packages our applications (and all their necessary parts) into self-contained units called 'containers.' This ensures our code runs exactly the same everywhere." }.
+### 1️⃣ **You Write Code**
 
-Important: Your PR can only be merged if these automated checks pass, and if other team members review and approve your code. Code reviews are crucial for maintaining quality!
+As a developer, you'll:
 
-Merge to 'dev': Once approved, your changes are merged into our 'dev' (development) branch.
+- Write new code for our data processes, such as:  
+  - **Apache Airflow DAGs** (for scheduling data workflows)  
+  - **Data transformation scripts** (ETL/ELT code)  
+- Work inside a **feature branch** of our code repository (Azure Repos).
 
-Deploy to Development (CD): Merging to 'dev' automatically kicks off our Continuous Deployment (CD) pipeline for the development environment. This means your new code is automatically deployed to our development data pipeline, where we can test it thoroughly.
+This ensures your changes are isolated and easy to review.
 
-Deploy to Production: After successful testing in the development environment and final approvals, your changes are merged into the 'main' (production) branch. This triggers another CD pipeline, deploying your changes to our live production environment.
+---
 
-Potential Improvements for this Section:
-Actual CI/CD Diagram: Replace the placeholder (Imagine a simplified CI/CD flow diagram here) with the actual diagram from the original runbook.
+### 2️⃣ **Propose Changes (Create a Pull Request - PR)**
 
-Screenshots: Include small screenshots of key steps in Azure DevOps (e.g., how to create a PR, what a passing pipeline looks like).
+Once your feature is ready:
 
-"Why CI/CD?" Explanation: Briefly explain the benefits of CI/CD (e.g., faster deployments, fewer errors, more reliable code) for a new hire.
+- You create a **Pull Request (PR)** in Azure DevOps.  
+- A PR is a formal request to merge your feature branch into the **`dev` branch**.
 
-Code Review Best Practices: Briefly mention the importance of code reviews as part of the PR process.
+This step kicks off the **review and testing process**.
+
+[Learn how to create a Pull Request in Azure DevOps](https://learn.microsoft.com/en-us/azure/devops/repos/git/pull-requests)
+
+---
+
+### 3️⃣ **Automated Checks (Continuous Integration - CI)**
+
+When you create a PR, our **CI pipeline** automatically runs:
+
+#### 🔍 **Code Quality Checks**
+
+- We use **SonarCloud Analysis** to:
+  - Scan for bugs  
+  - Identify security issues  
+  - Detect code smells (bad practices)
+
+---
+
+#### 🛠️ **Build Components**
+
+- The pipeline builds necessary components, such as:
+  - **Docker images** for containerized data jobs  
+  - **Packaging Airflow DAGs** or Python scripts for deployment  
+
+---
+
+#### ✅ **Pass Requirements**
+
+Your PR can only be merged when:
+
+- All automated checks **pass**  
+- At least one team member **reviews and approves your code**
+
+Code reviews are essential for:
+
+- Catching bugs early  
+- Sharing knowledge  
+- Maintaining code quality and consistency
+
+---
+
+### 4️⃣ **Merge to `dev`**
+
+Once approved, your changes are merged into the **`dev` branch**.
+
+This is our **development environment** where new code is first tested end-to-end.
+
+---
+
+### 5️⃣ **Deploy to Development (Continuous Deployment - CD)**
+
+Merging into `dev` triggers the **CD pipeline**:
+
+- Your code is **automatically deployed** to our **development data pipelines**.  
+- This lets the team **test new workflows in a safe environment** before going live.
+
+---
+
+### 6️⃣ **Deploy to Production**
+
+After successful testing in development:
+
+- Your team creates a **PR from `dev` to `main`** (the production branch).
+- Once approved, the **production CD pipeline** deploys your code to **live systems**.
+
+---
+
+
+## Why CI/CD?
+
+**CI/CD is crucial for modern data engineering because it:**
+
+- **Speeds up deployment** – Faster delivery of new features and bug fixes.  
+- **Reduces human error** – Automated pipelines catch issues early.  
+- **Ensures consistency** – Same process for every deployment.  
+- **Improves collaboration** – Code reviews promote shared knowledge and quality control.
+
+---
+
+## Code Review Best Practices
+
+When reviewing or submitting a PR:
+
+- Write **clear, descriptive PR titles and messages**.
+- Keep PRs **small and focused** (one change per PR if possible).  
+- Use **comments** to explain non-obvious code decisions.  
+- **Be constructive** in feedback—focus on improvement, not criticism.  
+- Review **logic, security, and performance**, not just syntax.
+
+---
+
+## Tools Involved
+
+| Tool               | Purpose                                      |
+|-------------------|----------------------------------------------|
+| **Azure DevOps**   | Version control, PRs, pipelines              |
+| **Azure Repos**    | Git-based code repository                    |
+| **SonarCloud**     | Code quality and security checks             |
+| **Docker**         | Packaging and running code in containers     |
+| **Airflow**        | Scheduling and orchestrating data workflows  |
+
+---
+
+# End of CI/CD Section
+
+

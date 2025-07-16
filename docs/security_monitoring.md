@@ -1,31 +1,148 @@
-5. Staying Secure & Monitoring Everything 🔒👀
-Security and monitoring are built into every single step of our data pipeline.
+# 5. Staying Secure & Monitoring Everything 🔒👀
 
-Security First:
-AWS VPC { data-tooltip="Virtual Private Cloud: Our data systems live in a secure, isolated network within AWS." } (Virtual Private Cloud): Our data systems live in a secure, isolated network within AWS.
+At EVERSANA, **security and monitoring** are built into **every step** of our data pipeline.  
 
-IAM { data-tooltip="Identity and Access Management: This controls who can access our AWS resources and what actions they are allowed to perform. Access is granted based on your role and what you need to do." } (Identity and Access Management): This controls who can access our AWS resources and what actions they are allowed to perform. Access is granted based on your role and what you need to do.
+We prioritize:
 
-KMS { data-tooltip="Key Management Service: We use this to encrypt our sensitive data, both when it's stored and when it's moving between systems." } (Key Management Service): We use this to encrypt our sensitive data, both when it's stored and when it's moving between systems.
+- **Data protection**  
+- **System reliability**  
+- **Proactive alerts and monitoring**  
 
-SQL Injection Prevention: When our code talks to databases (like Snowflake), we always use a secure method called "parameterized queries." This is a technical detail, but it's crucial for preventing malicious attacks.
+---
 
-Always Watching (Monitoring):
-Airflow Logs: We check Apache Airflow logs to see if our data workflows are running smoothly or if there are any errors.
+## Security First 🔐
 
-AWS CloudWatch: This is our main tool for monitoring the performance and health of all our AWS services (like AWS S3, AWS ECS tasks, etc.).
+### 🔒 **AWS VPC (Virtual Private Cloud)**
 
-Access AWS CloudWatch (Internal Link - Requires VPN/Access)
+Our data systems run in a **Virtual Private Cloud (VPC)**:
 
-Snowflake Monitoring: Snowflake has its own built-in tools that help us track how well our queries are performing and manage costs.
+- An **isolated, secure network** within AWS  
+- Prevents unauthorized external access  
+- All services communicate inside this protected environment
 
-Access Snowflake Monitoring (Internal Link - Requires Login)
+---
 
-Alerts: We have automated alerts set up. If something goes wrong (like a pipeline failure, unexpected data volume, or performance issues), the right people are notified immediately.
+### 🔒 **IAM (Identity and Access Management)**
 
-Potential Improvements for this Section:
-Accessing Monitoring Tools: Provide direct links or instructions on how a new user can access Airflow logs, AWS CloudWatch dashboards, and Snowflake monitoring interfaces.
+**IAM controls who can access what.**
 
-Example Alert: Show a very simple example of what an alert might look like (e.g., "Email: ETL Pipeline Failure - DAG 'sales_data_daily' failed in Core Layer").
+- Each team member is granted **role-based access**  
+- **Least privilege principle** is followed—access is granted **only as needed**  
+- All actions are logged for **audit and compliance**
 
-Security Best Practices for Developers: Briefly list common security practices relevant to developers (e.g., "Never hardcode credentials," "Follow least privilege principle").
+---
+
+### 🔒 **KMS (Key Management Service)**
+
+We use **AWS KMS** to:
+
+- **Encrypt data at rest** (stored in S3, Snowflake, etc.)  
+- **Encrypt data in transit** (moving between services)  
+- Manage **encryption keys securely**  
+
+---
+
+### 🔒 **SQL Injection Prevention**
+
+When interacting with databases (like **Snowflake**), our developers:
+
+- **Always use parameterized queries**  
+- Avoid directly inserting user or file inputs into SQL statements  
+- This prevents malicious attacks, known as **SQL Injection**
+
+---
+
+### 🔒 **Security Best Practices for Developers**
+
+| Practice                              | Why It Matters                           |
+|---------------------------------------|------------------------------------------|
+| **Never hardcode credentials**        | Use environment variables or AWS Secrets Manager |
+| **Follow least privilege principle**  | Access only the services you need       |
+| **Use secure coding practices**       | Prevent security vulnerabilities        |
+| **Encrypt sensitive data**            | Protect PII, PHI, and client data       |
+| **Regularly review access policies**  | Ensure no excessive permissions         |
+
+---
+
+## Always Watching: Monitoring Everything 👀
+
+We use **multiple monitoring tools** to ensure **pipeline health, performance, and security.**
+
+---
+
+### 📄 **Airflow Logs**
+
+- View logs for every **DAG run**, **task execution**, and **failure reason**  
+- Logs are accessible via the **Airflow UI**  
+- Helps troubleshoot pipeline failures quickly  
+
+---
+
+### 📊 **AWS CloudWatch**
+
+**AWS CloudWatch** monitors:
+
+- **Service performance** (e.g., ECS tasks, S3 events)  
+- **Resource usage** (CPU, memory, etc.)  
+- **System health** (failures, bottlenecks, timeouts)
+
+CloudWatch is our **first line of defense** for identifying cloud infrastructure issues.
+
+*(Internal Access Link - Requires VPN)*
+
+---
+
+### 🧊 **Snowflake Monitoring**
+
+Snowflake provides its own monitoring features:
+
+- **Query profiling** to analyze slow or costly queries  
+- **Warehouse utilization metrics** to optimize performance  
+- **Storage and cost tracking** for budget management  
+
+*(Internal Access Link - Requires Snowflake Login)*
+
+---
+
+### 🚨 **Automated Alerts**
+
+We have **automated alerts** set up for:
+
+- **Pipeline failures**  
+- **Unexpected data volumes**  
+- **Performance degradation**  
+- **Security anomalies**
+
+When something goes wrong, the relevant team members are notified **immediately**.
+
+#### **Example Alert:**
+
+```
+
+Subject: ETL Pipeline Failure
+Body: DAG 'sales\_data\_daily' failed during the Core Layer processing step.
+Time: 03:17 AM UTC
+Action Required: Check Airflow logs and resolve the issue.
+
+```
+
+---
+
+## Summary
+
+| Area                  | How We Handle It                           |
+|----------------------|-------------------------------------------|
+| **Network Security**  | AWS VPC, IAM, KMS                         |
+| **Database Security** | Parameterized queries, encryption         |
+| **Monitoring**        | Airflow Logs, CloudWatch, Snowflake tools |
+| **Alerts**            | Automated notifications on failures      |
+
+---
+
+By combining **strong security practices** with **comprehensive monitoring**, we ensure that:
+
+- Our **data is protected**  
+- Our **pipelines run smoothly**  
+- We can **respond quickly** to any issues
+
+---

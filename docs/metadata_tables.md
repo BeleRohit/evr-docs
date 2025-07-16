@@ -1,76 +1,189 @@
-6. Our "Metadata" Tables: The Pipeline's Brains 🧠
-Our data pipeline is smart because it's driven by metadata { data-tooltip="Data about data: Information stored in special tables that describes our files, columns, and the rules for processing them." }. This "data about data" tells our systems how to handle different files, what columns they have, and what transformations to apply. This metadata is stored in special tables within our Snowflake { data-tooltip="Our powerful cloud-based data warehouse. This is where most of our processed data lives and where our analytical tools connect." } data warehouse.
+# 6. Our *Metadata* Tables: The Pipeline's Brains 🧠
 
-These tables are crucial because they make our pipeline flexible. Instead of hardcoding rules into every script, we define them once in these tables, and our pipeline reads from them dynamically.
+At EVERSANA, our data pipeline is **smart and flexible** because it's **driven by metadata**.
 
-Here are some of the most important metadata tables you'll hear about:
+## What is Metadata?
 
-DYNAMIC_DATA_LOADS:
+**Metadata** means "**data about data**." In our pipelines, metadata tells the system:
 
-Purpose: This table holds all the instructions for how we load raw data.
+- **What files to load**  
+- **Where to find them**  
+- **What columns they contain**  
+- **What transformations to apply**  
+- **How to handle errors or exceptions**
 
-What it defines: It tells the pipeline things like the unique ID for a file (FILE ID), where the file is located in AWS S3 (S3 FILE PATH), how often we expect to receive it (FREQUENCY - daily, weekly), and the specific type of initial load (RAW LOAD_TYPE - e.g., "FIRST_TIME" for a new dataset, or "TRUNCATE" which means replacing all old data with new).
+This removes the need to hardcode rules into scripts. Instead, we define rules **once** in metadata tables, and the pipeline reads them **dynamically** at runtime.
 
-Example Query:
+All metadata is stored in **Snowflake**, our cloud data warehouse.
 
+---
+
+## Why Use Metadata?
+
+| Benefit                                | Description                                    |
+|----------------------------------------|------------------------------------------------|
+| **Flexibility**                        | New files and columns can be added without rewriting code. |
+| **Reusability**                        | Same pipeline logic works for multiple datasets. |
+| **Transparency**                      | Clear documentation of how data is processed. |
+| **Error Reduction**                    | Fewer manual code changes = fewer bugs.       |
+| **Simplified Troubleshooting**         | Metadata tracks file status and process flows.|
+
+---
+
+## Key Metadata Tables in Our Pipeline
+
+Below are the most important metadata tables you'll encounter:
+
+
+
+### **1️⃣ DYNAMIC_DATA_LOADS**
+
+#### **Purpose:**  
+Stores instructions for how **raw data is loaded** into the system.
+
+#### **What it Defines:**
+
+| Column              | Description                                           |
+|--------------------|-------------------------------------------------------|
+| `FILE ID`           | Unique identifier for each input file                |
+| `S3 FILE PATH`      | AWS S3 location of the file                          |
+| `FREQUENCY`         | How often we expect the file (e.g., Daily, Weekly)  |
+| `RAW LOAD_TYPE`     | Loading method (e.g., `FIRST_TIME`, `TRUNCATE`)     |
+
+#### **Example Query:**
+
+```sql
 SELECT "FILE ID", "S3 FILE PATH", "FREQUENCY", "RAW LOAD_TYPE"
 FROM EVERSANA_UTILITY_DB.MONITORING.DYNAMIC_DATA_LOADS
 LIMIT 5;
+````
 
-DYNAMIC_COLUMN_DEFINITIONS:
+---
 
-Purpose: This table is like a dictionary for our data columns. It defines the structure and data type for every column in our tables.
+### **2️⃣ DYNAMIC\_COLUMN\_DEFINITIONS**
 
-What it defines: For each TABLE IDENTIFIER, it specifies the COLUMN NAME, what kind of data it should hold (DATATYPE - e.g., TEXT for words, FIXED for numbers, DATE for dates), and sometimes even custom rules for transforming the column's values (COLUMN_VALUE_TRANSFORMATION).
+#### **Purpose:**
 
-Example Query:
+Acts as a **data dictionary** for every table and file column in our pipeline.
 
+#### **What it Defines:**
+
+| Column                        | Description                                   |
+| ----------------------------- | --------------------------------------------- |
+| `TABLE IDENTIFIER`            | The name of the table or dataset              |
+| `COLUMN NAME`                 | The name of each column                       |
+| `DATATYPE`                    | The data type (`TEXT`, `FIXED`, `DATE`, etc.) |
+| `COLUMN_VALUE_TRANSFORMATION` | Custom rules for transforming column values   |
+
+#### **Example Query:**
+
+```sql
 SELECT "TABLE IDENTIFIER", "COLUMN NAME", "DATATYPE", "COLUMN_VALUE_TRANSFORMATION"
 FROM EVERSANA_UTILITY_DB.MONITORING.DYNAMIC_COLUMN_DEFINITIONS
 WHERE "TABLE IDENTIFIER" = 'YOUR_EXAMPLE_TABLE'
 LIMIT 5;
+```
 
-DYNAMIC_CORE_LOADS:
+---
 
-Purpose: This table contains the rules for how we process data in our Core Layer (where the main cleaning and transformation happens).
+### **3️⃣ DYNAMIC\_CORE\_LOADS**
 
-What it defines: It specifies the type of load for the Core Layer (CORE LOAD TYPE - e.g., "DELTA" for incremental updates, "UPSERT" for merging new and existing data), and important flags like ENRICHMENT FLAG which tells the pipeline if additional "enrichment" steps are needed for the data.
+#### **Purpose:**
 
-Example Query:
+Defines how data is processed in the **Core Layer**, where cleaning, validation, and transformation happen.
 
+#### **What it Defines:**
+
+| Column             | Description                                       |
+| ------------------ | ------------------------------------------------- |
+| `TABLE IDENTIFIER` | The target table name                             |
+| `CORE LOAD TYPE`   | Load type for core processing (`DELTA`, `UPSERT`) |
+| `ENRICHMENT FLAG`  | Indicates if additional enrichment is required    |
+
+#### **Example Query:**
+
+```sql
 SELECT "TABLE IDENTIFIER", "CORE LOAD TYPE", "ENRICHMENT FLAG"
 FROM EVERSANA_UTILITY_DB.MONITORING.DYNAMIC_CORE_LOADS
 LIMIT 5;
+```
 
-DYNAMIC_FTB_INPUT_UNIVERSE:
+---
 
-Purpose: This table tracks the status of every incoming input file as it moves through each stage of the pipeline.
+### **4️⃣ DYNAMIC\_FTB\_INPUT\_UNIVERSE**
 
-What it defines: It records the file's ID, name, S3 path, and the status of various checks (e.g., "pre-validation successful," "raw load complete," "core load failed," "data quality monitoring run"). This is crucial for troubleshooting if a file gets stuck or an error occurs.
+#### **Purpose:**
 
-Example Query:
+Tracks the **status of incoming files** as they move through pipeline stages.
 
+#### **What it Defines:**
+
+| Column           | Description                                |
+| ---------------- | ------------------------------------------ |
+| `FILE ID`        | Unique identifier for the file             |
+| `FILE NAME`      | Actual file name in S3                     |
+| `PRE VALIDATION` | Status of pre-processing validation checks |
+| `CORE LOAD`      | Status of core data load                   |
+| `ERROR`          | Any error messages encountered             |
+| `SYSTEM DATE`    | Timestamp of the latest update             |
+
+#### **Example Query:**
+
+```sql
 SELECT "FILE ID", "FILE NAME", "PRE VALIDATION", "CORE LOAD", "ERROR"
 FROM EVERSANA_UTILITY_DB.MONITORING.DYNAMIC_FTB_INPUT_UNIVERSE
 ORDER BY "SYSTEM DATE" DESC
 LIMIT 5;
+```
 
-DYNAMIC_ENRICHMENT_LOADS:
+---
 
-Purpose: This table stores special SQL queries that are run to "enrich" our data. Enrichment means adding more value or detail to existing data (e.g., looking up customer demographics based on an ID).
+### **5️⃣ DYNAMIC\_ENRICHMENT\_LOADS**
 
-What it defines: It links a specific file and table to a custom SQL_QUERY that will perform the enrichment operation.
+#### **Purpose:**
 
-Example Query:
+Stores **custom SQL queries** for data enrichment tasks.
 
+Enrichment means adding additional value to data, like:
+
+* Looking up reference data
+* Adding customer details from master tables
+* Generating calculated fields
+
+#### **What it Defines:**
+
+| Column             | Description                          |
+| ------------------ | ------------------------------------ |
+| `TABLE IDENTIFIER` | The target table for enrichment      |
+| `SQL_QUERY`        | The custom SQL to run for enrichment |
+
+#### **Example Query:**
+
+```sql
 SELECT "TABLE_IDENTIFIER", "SQL_QUERY"
 FROM EVERSANA_UTILITY_DB.MONITORING.DYNAMIC_ENRICHMENT_LOADS
 WHERE "TABLE_IDENTIFIER" = 'YOUR_ENRICHMENT_TABLE'
 LIMIT 1;
+```
 
-Potential Improvements for this Section:
-Simple SQL Examples: For each metadata table, provide a very basic SQL SELECT statement that a new user could run in Snowflake to see what kind of data is in that table.
+---
 
-Relationship Between Tables: Briefly explain how these tables relate to each other (e.g., "The FILE ID in DYNAMIC_DATA_LOADS connects to the FILE ID in DYNAMIC_ENRICHMENT_LOADS").
+## How These Tables Work Together
 
-"Why Metadata?" Explanation: Briefly explain why we use metadata tables (e.g., "to make our pipeline flexible," "to avoid hardcoding rules").
+| Table Name                   | Connects To                  | Relationship Example                              |
+| ---------------------------- | ---------------------------- | ------------------------------------------------- |
+| `DYNAMIC_DATA_LOADS`         | `DYNAMIC_FTB_INPUT_UNIVERSE` | Both share `FILE ID` for file tracking            |
+| `DYNAMIC_COLUMN_DEFINITIONS` | All load processes           | Defines column structure for loading              |
+| `DYNAMIC_CORE_LOADS`         | `DYNAMIC_DATA_LOADS`         | Controls next steps after raw load                |
+| `DYNAMIC_ENRICHMENT_LOADS`   | `DYNAMIC_CORE_LOADS`         | Executes after core load if enrichment is flagged |
+
+---
+
+## Summary
+
+By using **metadata-driven pipelines**, EVERSANA ensures:
+
+* **Agility:** We can onboard new data sources with minimal code changes.
+* **Standardization:** All data loads follow consistent, well-documented rules.
+* **Transparency:** Anyone can inspect the metadata tables to understand pipeline behavior.
+* **Troubleshooting Power:** You can trace any file or table through the pipeline stages.
