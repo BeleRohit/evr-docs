@@ -1,0 +1,60 @@
+# mkdocs.yml
+site_name: EVERSANA ETL Process Runbook
+site_url: https://your-github-username.github.io/your-repo-name/ # IMPORTANT: Update this URL!
+site_description: A user-friendly guide to EVERSANA's ETL pipeline.
+
+# Theme configuration
+theme:
+  name: material # A modern, responsive, and feature-rich theme
+  palette:
+    primary: 'indigo' # Primary color for the theme
+    accent: 'blue'    # Accent color for links, etc.
+  features:
+    - navigation.tabs # Top-level navigation tabs
+    - navigation.sections # Sections in the sidebar
+    - toc.integrate # Integrate table of contents into the sidebar
+    - search.suggest # Search suggestions
+    - search.highlight # Highlight search results
+    - content.tabs.link # Linkable tabs within content
+    - content.tooltips # Enable tooltips for definitions (requires specific Markdown syntax)
+  icon:
+    logo: material/file-document-outline # You can change this icon
+
+# Extensions for enhanced Markdown features
+markdown_extensions:
+  - admonition # For callouts like 'note', 'tip', 'warning'
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_numbers: true
+      noclasses: true
+  - pymdownx.superfences # For better code blocks
+  - pymdownx.details # For collapsible sections
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list # Essential for tooltips and custom attributes
+  - def_list # For definition lists (can be used for glossary)
+  - footnotes # For footnotes, useful for definitions
+  - pymdownx.snippets # For including content from other files (e.g., glossary)
+
+# Navigation structure
+nav:
+  - Home: index.md
+  - Glossary: glossary.md
+  - 3. Our Data Pipeline:
+    - Overview: pipeline/overview.md
+    - Data Sources: pipeline/data_sources.md
+    - Ingestion & File Tracking: pipeline/ingestion_file_tracking.md
+    - Orchestration: pipeline/orchestration.md
+    - Data Processing: pipeline/data_processing.md
+    - Data Consumers: pipeline/data_consumers.md
+  - 4. CI/CD Process: ci_cd.md
+  - 5. Security & Monitoring: security_monitoring.md
+  - 6. Metadata Tables: metadata_tables.md
+  - 7. How to Deploy Your Code: deployment_guide.md
+  - 8. Need Help? Resources & Support: resources_support.md
+
+# Plugins (optional, but can add powerful features)
+plugins:
+  - search # Enable search functionality
+  # - minify: # Optional: Minify HTML, CSS, JS for faster loading
+  #     minify_html: true
