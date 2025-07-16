@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://your-github-username.github.io/your-repo-name/</loc>
+         <loc>https://BeleRohit.github.io/evr-docs/</loc>
          <lastmod>2025-07-16</lastmod>
     </url>
     <url>
-         <loc>https://your-github-username.github.io/your-repo-name/ci_cd/</loc>
+         <loc>https://BeleRohit.github.io/evr-docs/ci_cd/</loc>
          <lastmod>2025-07-16</lastmod>
     </url>
     <url>
-         <loc>https://your-github-username.github.io/your-repo-name/deployement_guide/</loc>
+         <loc>https://BeleRohit.github.io/evr-docs/deployement_guide/</loc>
          <lastmod>2025-07-16</lastmod>
     </url>
     <url>
-         <loc>https://your-github-username.github.io/your-repo-name/glossary/</loc>
+         <loc>https://BeleRohit.github.io/evr-docs/glossary/</loc>
          <lastmod>2025-07-16</lastmod>
     </url>
     <url>
-         <loc>https://your-github-username.github.io/your-repo-name/metadata_tables/</loc>
+         <loc>https://BeleRohit.github.io/evr-docs/metadata_tables/</loc>
          <lastmod>2025-07-16</lastmod>
     </url>
     <url>
-         <loc>https://your-github-username.github.io/your-repo-name/security_monitoring/</loc>
+         <loc>https://BeleRohit.github.io/evr-docs/security_monitoring/</loc>
          <lastmod>2025-07-16</lastmod>
     </url>
     <url>
-         <loc>https://your-github-username.github.io/your-repo-name/pipeline/data_consumers/</loc>
+         <loc>https://BeleRohit.github.io/evr-docs/pipeline/data_consumers/</loc>
          <lastmod>2025-07-16</lastmod>
     </url>
     <url>
-         <loc>https://your-github-username.github.io/your-repo-name/pipeline/data_processing/</loc>
+         <loc>https://BeleRohit.github.io/evr-docs/pipeline/data_processing/</loc>
          <lastmod>2025-07-16</lastmod>
     </url>
     <url>
-         <loc>https://your-github-username.github.io/your-repo-name/pipeline/data_sources/</loc>
+         <loc>https://BeleRohit.github.io/evr-docs/pipeline/data_sources/</loc>
          <lastmod>2025-07-16</lastmod>
     </url>
     <url>
-         <loc>https://your-github-username.github.io/your-repo-name/pipeline/ingestion_file_tracking/</loc>
+         <loc>https://BeleRohit.github.io/evr-docs/pipeline/ingestion_file_tracking/</loc>
          <lastmod>2025-07-16</lastmod>
     </url>
     <url>
-         <loc>https://your-github-username.github.io/your-repo-name/pipeline/orchestration/</loc>
+         <loc>https://BeleRohit.github.io/evr-docs/pipeline/orchestration/</loc>
          <lastmod>2025-07-16</lastmod>
     </url>
     <url>
-         <loc>https://your-github-username.github.io/your-repo-name/pipeline/overview/</loc>
+         <loc>https://BeleRohit.github.io/evr-docs/pipeline/overview/</loc>
          <lastmod>2025-07-16</lastmod>
     </url>
 </urlset>

@@ -1,4 +1,4 @@
-site_name: EVERSANA ETL Process Runbook
+site_name: EVERSANA ETL Process Flow
 site_url: https://BeleRohit.github.io/evr-docs/ # IMPORTANT: Update this URL!
 site_description: A user-friendly guide to EVERSANA's ETL pipeline.
 repo_url: https://github.com/BeleRohit/evr-docs
@@ -83,8 +83,6 @@ nav:
       - 7. How to Deploy Your Code: deployment_guide.md
   - Security & Monitoring:
       - 5. Security & Monitoring: security_monitoring.md
-  - Support & Resources:
-      - 8. Need Help? Resources & Support: resources_support.md
 
 # Plugins
 plugins:
