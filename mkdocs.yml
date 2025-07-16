@@ -25,8 +25,7 @@ markdown_extensions:
   - admonition # For callouts like 'note', 'tip', 'warning'
   - pymdownx.highlight:
       anchor_linenums: true
-      line_numbers: true
-      noclasses: true
+      linenums: true
   - pymdownx.superfences # For better code blocks
   - pymdownx.details # For collapsible sections
   - pymdownx.tabbed:
