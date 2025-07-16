@@ -10,19 +10,21 @@
       
       
       
-        <link rel="canonical" href="https://your-github-username.github.io/your-repo-name/metadata_tables/">
+        <link rel="canonical" href="https://BeleRohit.github.io/evr-docs/metadata_tables/">
       
       
-        <link rel="prev" href="../security_monitoring/">
+        <link rel="prev" href="../glossary/">
       
       
+        <link rel="next" href="../pipeline/overview/">
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      
+      <link rel="icon" href="../assets/images/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
     
     
       
-        <title>6. Metadata Tables - EVERSANA ETL Process Runbook</title>
+        <title>Metadata Tables - EVERSANA ETL Process Runbook</title>
       
     
     
@@ -48,6 +50,8 @@
       
     
     
+      <link rel="stylesheet" href="../assets/css/custom.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -60,6 +64,8 @@
   
     
     
+      
+    
     
     
     
@@ -71,10 +77,19 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#6-our-metadata-tables-the-pipelines-brains" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
     </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
     
     
       
@@ -83,8 +98,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="EVERSANA ETL Process Runbook" class="md-header__button md-logo" aria-label="EVERSANA ETL Process Runbook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2h7v5h5v11H6zm2 8v2h8v-2zm0 4v2h5v-2z"/></svg>
+  <img src="../assets/images/eversana_logo.jpg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -101,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              6. Metadata Tables
+              Metadata Tables
             
           </span>
         </div>
@@ -109,7 +123,33 @@
     </div>
     
       
+        <form class="md-header__option" data-md-component="palette">
+  
     
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -156,6 +196,18 @@
       
     
     
+      <div class="md-header__source">
+        <a href="https://github.com/BeleRohit/evr-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    evr-docs
+  </div>
+</a>
+      </div>
+    
   </nav>
   
 </header>
@@ -193,18 +245,21 @@
   
   
   
-  
-    <li class="md-tabs__item">
-      <a href="../glossary/" class="md-tabs__link">
-        
+    
   
   
     
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../glossary/" class="md-tabs__link">
+          
   
-  Glossary
+  
+  Quick Reference
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -220,7 +275,7 @@
           
   
   
-  3. Our Data Pipeline
+  Data Pipeline
 
         </a>
       </li>
@@ -233,17 +288,18 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../ci_cd/" class="md-tabs__link">
-        
-  
-  
     
+    
+      <li class="md-tabs__item">
+        <a href="../ci_cd/" class="md-tabs__link">
+          
   
-  4. CI/CD Process
+  
+  Developer Guide
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -252,38 +308,18 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../security_monitoring/" class="md-tabs__link">
-        
-  
-  
     
-  
-  5. Security & Monitoring
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
     
+      <li class="md-tabs__item">
+        <a href="../security_monitoring/" class="md-tabs__link">
+          
   
   
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
-        
-  
-  
-    
-  
-  6. Metadata Tables
+  Security & Monitoring
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -292,36 +328,18 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../deployment_guide.md" class="md-tabs__link">
-        
-  
-  
     
-  
-  7. How to Deploy Your Code
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../resources_support.md" class="md-tabs__link">
-        
-  
-  
     
+      <li class="md-tabs__item">
+        <a href="../resources_support.md" class="md-tabs__link">
+          
   
-  8. Need Help? Resources & Support
+  
+  Support & Resources
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -351,12 +369,23 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="EVERSANA ETL Process Runbook" class="md-nav__button md-logo" aria-label="EVERSANA ETL Process Runbook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2h7v5h5v11H6zm2 8v2h8v-2zm0 4v2h5v-2z"/></svg>
+  <img src="../assets/images/eversana_logo.jpg" alt="logo">
 
     </a>
     EVERSANA ETL Process Runbook
   </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/BeleRohit/evr-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    evr-docs
+  </div>
+</a>
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -386,6 +415,54 @@
       
   
   
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Quick Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Quick Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
@@ -400,6 +477,298 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Metadata Tables
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metadata Tables
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Metadata?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-use-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Use Metadata?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-metadata-tables-in-our-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Metadata Tables in Our Pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Metadata Tables in Our Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-dynamic_data_loads" class="md-nav__link">
+    <span class="md-ellipsis">
+      1️⃣ DYNAMIC_DATA_LOADS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1️⃣ DYNAMIC_DATA_LOADS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-it-defines" class="md-nav__link">
+    <span class="md-ellipsis">
+      What it Defines:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Query:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dynamic_core_loads" class="md-nav__link">
+    <span class="md-ellipsis">
+      3️⃣ DYNAMIC_CORE_LOADS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3️⃣ DYNAMIC_CORE_LOADS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-it-defines_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      What it Defines:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-query_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Query:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-dynamic_ftb_input_universe" class="md-nav__link">
+    <span class="md-ellipsis">
+      4️⃣ DYNAMIC_FTB_INPUT_UNIVERSE
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4️⃣ DYNAMIC_FTB_INPUT_UNIVERSE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-it-defines_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      What it Defines:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-query_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Query:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-dynamic_enrichment_loads" class="md-nav__link">
+    <span class="md-ellipsis">
+      5️⃣ DYNAMIC_ENRICHMENT_LOADS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5️⃣ DYNAMIC_ENRICHMENT_LOADS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Purpose:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-it-defines_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      What it Defines:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-query_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Query:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-these-tables-work-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      How These Tables Work Together
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -424,7 +793,9 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -432,7 +803,7 @@
   
   
   <span class="md-ellipsis">
-    3. Our Data Pipeline
+    Data Pipeline
     
   </span>
   
@@ -443,7 +814,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            3. Our Data Pipeline
+            Data Pipeline
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -482,7 +853,7 @@
   
   
   <span class="md-ellipsis">
-    Data Sources
+    3.1 Data Sources
     
   </span>
   
@@ -505,7 +876,7 @@
   
   
   <span class="md-ellipsis">
-    Ingestion & File Tracking
+    3.2 Ingestion & File Tracking
     
   </span>
   
@@ -528,7 +899,7 @@
   
   
   <span class="md-ellipsis">
-    Orchestration
+    3.3 Orchestration
     
   </span>
   
@@ -551,7 +922,7 @@
   
   
   <span class="md-ellipsis">
-    Data Processing
+    3.4 Data Processing
     
   </span>
   
@@ -574,7 +945,7 @@
   
   
   <span class="md-ellipsis">
-    Data Consumers
+    3.5 Data Consumers
     
   </span>
   
@@ -598,6 +969,51 @@
   
   
   
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Developer Guide
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Developer Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../ci_cd/" class="md-nav__link">
         
@@ -613,61 +1029,10 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../security_monitoring/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    5. Security & Monitoring
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    6. Metadata Tables
-    
-  </span>
-  
-
-      </a>
-      
-    </li>
-  
-
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -687,9 +1052,137 @@
     </li>
   
 
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
     
       
       
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Security & Monitoring
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Security & Monitoring
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security_monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Security & Monitoring
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Support & Resources
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Support & Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
   
   
   
@@ -709,6 +1202,14 @@
     </li>
   
 
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
     
   </ul>
 </nav>
@@ -725,64 +1226,350 @@
                   
 
 
-
-  <h1>6. Metadata Tables</h1>
-
-<ol>
-<li>Our "Metadata" Tables: The Pipeline's Brains 🧠
-Our data pipeline is smart because it's driven by metadata { data-tooltip="Data about data: Information stored in special tables that describes our files, columns, and the rules for processing them." }. This "data about data" tells our systems how to handle different files, what columns they have, and what transformations to apply. This metadata is stored in special tables within our Snowflake { data-tooltip="Our powerful cloud-based data warehouse. This is where most of our processed data lives and where our analytical tools connect." } data warehouse.</li>
-</ol>
-<p>These tables are crucial because they make our pipeline flexible. Instead of hardcoding rules into every script, we define them once in these tables, and our pipeline reads from them dynamically.</p>
-<p>Here are some of the most important metadata tables you'll hear about:</p>
-<p>DYNAMIC_DATA_LOADS:</p>
-<p>Purpose: This table holds all the instructions for how we load raw data.</p>
-<p>What it defines: It tells the pipeline things like the unique ID for a file (FILE ID), where the file is located in AWS S3 (S3 FILE PATH), how often we expect to receive it (FREQUENCY - daily, weekly), and the specific type of initial load (RAW LOAD_TYPE - e.g., "FIRST_TIME" for a new dataset, or "TRUNCATE" which means replacing all old data with new).</p>
-<p>Example Query:</p>
-<p>SELECT "FILE ID", "S3 FILE PATH", "FREQUENCY", "RAW LOAD_TYPE"
-FROM EVERSANA_UTILITY_DB.MONITORING.DYNAMIC_DATA_LOADS
-LIMIT 5;</p>
-<p>DYNAMIC_COLUMN_DEFINITIONS:</p>
-<p>Purpose: This table is like a dictionary for our data columns. It defines the structure and data type for every column in our tables.</p>
-<p>What it defines: For each TABLE IDENTIFIER, it specifies the COLUMN NAME, what kind of data it should hold (DATATYPE - e.g., TEXT for words, FIXED for numbers, DATE for dates), and sometimes even custom rules for transforming the column's values (COLUMN_VALUE_TRANSFORMATION).</p>
-<p>Example Query:</p>
-<p>SELECT "TABLE IDENTIFIER", "COLUMN NAME", "DATATYPE", "COLUMN_VALUE_TRANSFORMATION"
-FROM EVERSANA_UTILITY_DB.MONITORING.DYNAMIC_COLUMN_DEFINITIONS
-WHERE "TABLE IDENTIFIER" = 'YOUR_EXAMPLE_TABLE'
-LIMIT 5;</p>
-<p>DYNAMIC_CORE_LOADS:</p>
-<p>Purpose: This table contains the rules for how we process data in our Core Layer (where the main cleaning and transformation happens).</p>
-<p>What it defines: It specifies the type of load for the Core Layer (CORE LOAD TYPE - e.g., "DELTA" for incremental updates, "UPSERT" for merging new and existing data), and important flags like ENRICHMENT FLAG which tells the pipeline if additional "enrichment" steps are needed for the data.</p>
-<p>Example Query:</p>
-<p>SELECT "TABLE IDENTIFIER", "CORE LOAD TYPE", "ENRICHMENT FLAG"
-FROM EVERSANA_UTILITY_DB.MONITORING.DYNAMIC_CORE_LOADS
-LIMIT 5;</p>
-<p>DYNAMIC_FTB_INPUT_UNIVERSE:</p>
-<p>Purpose: This table tracks the status of every incoming input file as it moves through each stage of the pipeline.</p>
-<p>What it defines: It records the file's ID, name, S3 path, and the status of various checks (e.g., "pre-validation successful," "raw load complete," "core load failed," "data quality monitoring run"). This is crucial for troubleshooting if a file gets stuck or an error occurs.</p>
-<p>Example Query:</p>
-<p>SELECT "FILE ID", "FILE NAME", "PRE VALIDATION", "CORE LOAD", "ERROR"
-FROM EVERSANA_UTILITY_DB.MONITORING.DYNAMIC_FTB_INPUT_UNIVERSE
-ORDER BY "SYSTEM DATE" DESC
-LIMIT 5;</p>
-<p>DYNAMIC_ENRICHMENT_LOADS:</p>
-<p>Purpose: This table stores special SQL queries that are run to "enrich" our data. Enrichment means adding more value or detail to existing data (e.g., looking up customer demographics based on an ID).</p>
-<p>What it defines: It links a specific file and table to a custom SQL_QUERY that will perform the enrichment operation.</p>
-<p>Example Query:</p>
-<p>SELECT "TABLE_IDENTIFIER", "SQL_QUERY"
-FROM EVERSANA_UTILITY_DB.MONITORING.DYNAMIC_ENRICHMENT_LOADS
-WHERE "TABLE_IDENTIFIER" = 'YOUR_ENRICHMENT_TABLE'
-LIMIT 1;</p>
-<p>Potential Improvements for this Section:
-Simple SQL Examples: For each metadata table, provide a very basic SQL SELECT statement that a new user could run in Snowflake to see what kind of data is in that table.</p>
-<p>Relationship Between Tables: Briefly explain how these tables relate to each other (e.g., "The FILE ID in DYNAMIC_DATA_LOADS connects to the FILE ID in DYNAMIC_ENRICHMENT_LOADS").</p>
-<p>"Why Metadata?" Explanation: Briefly explain why we use metadata tables (e.g., "to make our pipeline flexible," "to avoid hardcoding rules").</p>
+  
+    <a href="https://github.com/BeleRohit/evr-docs/edit/main/docs/metadata_tables.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/BeleRohit/evr-docs/raw/main/docs/metadata_tables.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+    </a>
+  
 
 
+<h1 id="6-our-metadata-tables-the-pipelines-brains">6. Our <em>Metadata</em> Tables: The Pipeline's Brains 🧠</h1>
+<p>At EVERSANA, our data pipeline is <strong>smart and flexible</strong> because it's <strong>driven by metadata</strong>.</p>
+<h2 id="what-is-metadata">What is Metadata?</h2>
+<p><strong>Metadata</strong> means "<strong>data about data</strong>." In our pipelines, metadata tells the system:</p>
+<ul>
+<li><strong>What files to load</strong>  </li>
+<li><strong>Where to find them</strong>  </li>
+<li><strong>What columns they contain</strong>  </li>
+<li><strong>What transformations to apply</strong>  </li>
+<li><strong>How to handle errors or exceptions</strong></li>
+</ul>
+<p>This removes the need to hardcode rules into scripts. Instead, we define rules <strong>once</strong> in metadata tables, and the pipeline reads them <strong>dynamically</strong> at runtime.</p>
+<p>All metadata is stored in <strong>Snowflake</strong>, our cloud data warehouse.</p>
+<hr />
+<h2 id="why-use-metadata">Why Use Metadata?</h2>
+<table>
+<thead>
+<tr>
+<th>Benefit</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Flexibility</strong></td>
+<td>New files and columns can be added without rewriting code.</td>
+</tr>
+<tr>
+<td><strong>Reusability</strong></td>
+<td>Same pipeline logic works for multiple datasets.</td>
+</tr>
+<tr>
+<td><strong>Transparency</strong></td>
+<td>Clear documentation of how data is processed.</td>
+</tr>
+<tr>
+<td><strong>Error Reduction</strong></td>
+<td>Fewer manual code changes = fewer bugs.</td>
+</tr>
+<tr>
+<td><strong>Simplified Troubleshooting</strong></td>
+<td>Metadata tracks file status and process flows.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="key-metadata-tables-in-our-pipeline">Key Metadata Tables in Our Pipeline</h2>
+<p>Below are the most important metadata tables you'll encounter:</p>
+<h3 id="1-dynamic_data_loads"><strong>1️⃣ DYNAMIC_DATA_LOADS</strong></h3>
+<h4 id="purpose"><strong>Purpose:</strong></h4>
+<p>Stores instructions for how <strong>raw data is loaded</strong> into the system.</p>
+<h4 id="what-it-defines"><strong>What it Defines:</strong></h4>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FILE ID</code></td>
+<td>Unique identifier for each input file</td>
+</tr>
+<tr>
+<td><code>S3 FILE PATH</code></td>
+<td>AWS S3 location of the file</td>
+</tr>
+<tr>
+<td><code>FREQUENCY</code></td>
+<td>How often we expect the file (e.g., Daily, Weekly)</td>
+</tr>
+<tr>
+<td><code>RAW LOAD_TYPE</code></td>
+<td>Loading method (e.g., <code>FIRST_TIME</code>, <code>TRUNCATE</code>)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example-query"><strong>Example Query:</strong></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="ss">&quot;FILE ID&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;S3 FILE PATH&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;FREQUENCY&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;RAW LOAD_TYPE&quot;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">EVERSANA_UTILITY_DB</span><span class="p">.</span><span class="n">MONITORING</span><span class="p">.</span><span class="n">DYNAMIC_DATA_LOADS</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="o">````</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="c1">---</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="o">###</span><span class="w"> </span><span class="o">**</span><span class="mi">2</span><span class="err">️⃣</span><span class="w"> </span><span class="k">DYNAMIC</span><span class="err">\</span><span class="n">_COLUMN</span><span class="err">\</span><span class="n">_DEFINITIONS</span><span class="o">**</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="o">####</span><span class="w"> </span><span class="o">**</span><span class="n">Purpose</span><span class="p">:</span><span class="o">**</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="n">Acts</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">**</span><span class="k">data</span><span class="w"> </span><span class="k">dictionary</span><span class="o">**</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">every</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">our</span><span class="w"> </span><span class="n">pipeline</span><span class="p">.</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="o">####</span><span class="w"> </span><span class="o">**</span><span class="n">What</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">Defines</span><span class="p">:</span><span class="o">**</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="o">|</span><span class="w"> </span><span class="k">Column</span><span class="w">                        </span><span class="o">|</span><span class="w"> </span><span class="n">Description</span><span class="w">                                   </span><span class="o">|</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="o">|</span><span class="w"> </span><span class="c1">----------------------------- | --------------------------------------------- |</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="o">|</span><span class="w"> </span><span class="o">`</span><span class="k">TABLE</span><span class="w"> </span><span class="n">IDENTIFIER</span><span class="o">`</span><span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">dataset</span><span class="w">              </span><span class="o">|</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="o">|</span><span class="w"> </span><span class="o">`</span><span class="k">COLUMN</span><span class="w"> </span><span class="n">NAME</span><span class="o">`</span><span class="w">                 </span><span class="o">|</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="k">column</span><span class="w">                       </span><span class="o">|</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="o">|</span><span class="w"> </span><span class="o">`</span><span class="n">DATATYPE</span><span class="o">`</span><span class="w">                    </span><span class="o">|</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="nb">TEXT</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">FIXED</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="nb">DATE</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="n">etc</span><span class="p">.)</span><span class="w"> </span><span class="o">|</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="o">|</span><span class="w"> </span><span class="o">`</span><span class="n">COLUMN_VALUE_TRANSFORMATION</span><span class="o">`</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Custom</span><span class="w"> </span><span class="n">rules</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">transforming</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="k">values</span><span class="w">   </span><span class="o">|</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="o">####</span><span class="w"> </span><span class="o">**</span><span class="n">Example</span><span class="w"> </span><span class="n">Query</span><span class="p">:</span><span class="o">**</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="o">```</span><span class="k">sql</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="k">SELECT</span><span class="w"> </span><span class="ss">&quot;TABLE IDENTIFIER&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;COLUMN NAME&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;DATATYPE&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;COLUMN_VALUE_TRANSFORMATION&quot;</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="k">FROM</span><span class="w"> </span><span class="n">EVERSANA_UTILITY_DB</span><span class="p">.</span><span class="n">MONITORING</span><span class="p">.</span><span class="n">DYNAMIC_COLUMN_DEFINITIONS</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="k">WHERE</span><span class="w"> </span><span class="ss">&quot;TABLE IDENTIFIER&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;YOUR_EXAMPLE_TABLE&#39;</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="3-dynamic_core_loads"><strong>3️⃣ DYNAMIC_CORE_LOADS</strong></h3>
+<h4 id="purpose_1"><strong>Purpose:</strong></h4>
+<p>Defines how data is processed in the <strong>Core Layer</strong>, where cleaning, validation, and transformation happen.</p>
+<h4 id="what-it-defines_1"><strong>What it Defines:</strong></h4>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TABLE IDENTIFIER</code></td>
+<td>The target table name</td>
+</tr>
+<tr>
+<td><code>CORE LOAD TYPE</code></td>
+<td>Load type for core processing (<code>DELTA</code>, <code>UPSERT</code>)</td>
+</tr>
+<tr>
+<td><code>ENRICHMENT FLAG</code></td>
+<td>Indicates if additional enrichment is required</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example-query_1"><strong>Example Query:</strong></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="ss">&quot;TABLE IDENTIFIER&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;CORE LOAD TYPE&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;ENRICHMENT FLAG&quot;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">EVERSANA_UTILITY_DB</span><span class="p">.</span><span class="n">MONITORING</span><span class="p">.</span><span class="n">DYNAMIC_CORE_LOADS</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="4-dynamic_ftb_input_universe"><strong>4️⃣ DYNAMIC_FTB_INPUT_UNIVERSE</strong></h3>
+<h4 id="purpose_2"><strong>Purpose:</strong></h4>
+<p>Tracks the <strong>status of incoming files</strong> as they move through pipeline stages.</p>
+<h4 id="what-it-defines_2"><strong>What it Defines:</strong></h4>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FILE ID</code></td>
+<td>Unique identifier for the file</td>
+</tr>
+<tr>
+<td><code>FILE NAME</code></td>
+<td>Actual file name in S3</td>
+</tr>
+<tr>
+<td><code>PRE VALIDATION</code></td>
+<td>Status of pre-processing validation checks</td>
+</tr>
+<tr>
+<td><code>CORE LOAD</code></td>
+<td>Status of core data load</td>
+</tr>
+<tr>
+<td><code>ERROR</code></td>
+<td>Any error messages encountered</td>
+</tr>
+<tr>
+<td><code>SYSTEM DATE</code></td>
+<td>Timestamp of the latest update</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example-query_2"><strong>Example Query:</strong></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="ss">&quot;FILE ID&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;FILE NAME&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;PRE VALIDATION&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;CORE LOAD&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;ERROR&quot;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">EVERSANA_UTILITY_DB</span><span class="p">.</span><span class="n">MONITORING</span><span class="p">.</span><span class="n">DYNAMIC_FTB_INPUT_UNIVERSE</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="ss">&quot;SYSTEM DATE&quot;</span><span class="w"> </span><span class="k">DESC</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="5-dynamic_enrichment_loads"><strong>5️⃣ DYNAMIC_ENRICHMENT_LOADS</strong></h3>
+<h4 id="purpose_3"><strong>Purpose:</strong></h4>
+<p>Stores <strong>custom SQL queries</strong> for data enrichment tasks.</p>
+<p>Enrichment means adding additional value to data, like:</p>
+<ul>
+<li>Looking up reference data</li>
+<li>Adding customer details from master tables</li>
+<li>Generating calculated fields</li>
+</ul>
+<h4 id="what-it-defines_3"><strong>What it Defines:</strong></h4>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TABLE IDENTIFIER</code></td>
+<td>The target table for enrichment</td>
+</tr>
+<tr>
+<td><code>SQL_QUERY</code></td>
+<td>The custom SQL to run for enrichment</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example-query_3"><strong>Example Query:</strong></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="ss">&quot;TABLE_IDENTIFIER&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;SQL_QUERY&quot;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">EVERSANA_UTILITY_DB</span><span class="p">.</span><span class="n">MONITORING</span><span class="p">.</span><span class="n">DYNAMIC_ENRICHMENT_LOADS</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="ss">&quot;TABLE_IDENTIFIER&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;YOUR_ENRICHMENT_TABLE&#39;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="how-these-tables-work-together">How These Tables Work Together</h2>
+<table>
+<thead>
+<tr>
+<th>Table Name</th>
+<th>Connects To</th>
+<th>Relationship Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DYNAMIC_DATA_LOADS</code></td>
+<td><code>DYNAMIC_FTB_INPUT_UNIVERSE</code></td>
+<td>Both share <code>FILE ID</code> for file tracking</td>
+</tr>
+<tr>
+<td><code>DYNAMIC_COLUMN_DEFINITIONS</code></td>
+<td>All load processes</td>
+<td>Defines column structure for loading</td>
+</tr>
+<tr>
+<td><code>DYNAMIC_CORE_LOADS</code></td>
+<td><code>DYNAMIC_DATA_LOADS</code></td>
+<td>Controls next steps after raw load</td>
+</tr>
+<tr>
+<td><code>DYNAMIC_ENRICHMENT_LOADS</code></td>
+<td><code>DYNAMIC_CORE_LOADS</code></td>
+<td>Executes after core load if enrichment is flagged</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="summary">Summary</h2>
+<p>By using <strong>metadata-driven pipelines</strong>, EVERSANA ensures:</p>
+<ul>
+<li><strong>Agility:</strong> We can onboard new data sources with minimal code changes.</li>
+<li><strong>Standardization:</strong> All data loads follow consistent, well-documented rules.</li>
+<li><strong>Transparency:</strong> Anyone can inspect the metadata tables to understand pipeline behavior.</li>
+<li><strong>Troubleshooting Power:</strong> You can trace any file or table through the pipeline stages.</li>
+</ul>
 
 
 
 
 
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 16, 2025 22:05:54 UTC">July 16, 2025</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
 
 
 
@@ -797,6 +1584,12 @@ Simple SQL Examples: For each metadata table, provide a very basic SQL SELECT st
 
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
@@ -814,6 +1607,32 @@ Simple SQL Examples: For each metadata table, provide a very basic SQL SELECT st
   
 </div>
       
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/BeleRohit/evr-docs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/eversana" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
     </div>
   </div>
 </footer>
@@ -826,10 +1645,12 @@ Simple SQL Examples: For each metadata table, provide a very basic SQL SELECT st
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "search.highlight", "content.tabs.link", "content.tooltips"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "toc.integrate", "content.code.copy", "content.tabs.link", "content.tooltips", "content.action.edit", "content.action.view", "search.suggest", "search.highlight", "navigation.path"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+        <script src="../assets/js/custom.js"></script>
       
     
   </body>
